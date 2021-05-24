@@ -1,0 +1,21 @@
+@font-face {
+  font-family: 'Titillium';
+  src: local('Titillium'), url(./fonts/Titillium_Web/TitilliumWeb-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Titillium-Bold';
+  src: local('Titillium-Bold'), url(./fonts/Titillium_Web/TitilliumWeb-Bold.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Titillium-Light';
+  src: local('Titillium-Light'), url(./fonts/Titillium_Web/TitilliumWeb-Light.ttf) format('truetype');
+}
+
+body {
+  background:
+  linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+  url(./textures/circles-and-roundabouts/circles-and-roundabouts.png);
+  /* background-image: url(./textures/prism/prism.png); */
+}
