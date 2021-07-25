@@ -7,7 +7,7 @@ import blackChkrKing from './../icon3.jpg';
 import blueChkrKing from './../icon4.jpg';
 
 function Checker(props) {
-    let source;                 // Switch on props.color to determine which image to use       
+    let source;                 // Switch on props.color to determine which image to use
     switch (props.color) {
         case 'Blue':
             source = blueChkr;
@@ -26,7 +26,7 @@ function Checker(props) {
             break;
     }
     return (
-        <img alt="chckr" height="50" width="50" src={source}></img>
+        <img alt="chckr" height="100%" width="100%" src={source}></img>
     );
 }
 
