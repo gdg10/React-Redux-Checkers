@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 function UserMessage(props) {
 
     var message = genMessage(props.seq);    //determine message shown to user from game state
-    console.log(message);
     return (
         <div style={style0}>
                 <h3 style={style1}>{message}</h3>
