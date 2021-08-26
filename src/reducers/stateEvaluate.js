@@ -1,6 +1,7 @@
 import getMoves from "./gameLogic/getMoves";
 import getJump from "./gameLogic/getJump";
 import checkWin from "./gameLogic/checkWin";
+import getRandomSquarePermutation from "./gameLogic/getRandomSquarePermutation";
 
 // Case 0 - Waiting for Human checker selection; then show selecion
 // Case 1 - Waiting for Human jump/move selection; then show move/jump
@@ -110,14 +111,15 @@ function stateEval(state, action) {
       //first try to jump any peice.
       let k = [];
       let tempChecker = null;
+      const randomSquarePermutation = getRandomSquarePermutation();
       for (let i = 0; i < 64; i++) {
-        tempChecker = state.chckrLocations[i];
+        tempChecker = state.chckrLocations[randomSquarePermutation[i]];
         if (tempChecker === "Black" || tempChecker === "Black King") {
-          k = getJump(tempChecker, i, state.chckrLocations, k);
+          k = getJump(tempChecker, randomSquarePermutation[i], state.chckrLocations, k);
           if (k.length > 0) {
             let temp = Object.assign([], state.chckrLocations);
             temp[k[0].jumpTo] = tempChecker; //move checker to new location
-            temp[i] = null;
+            temp[randomSquarePermutation[i]] = null;
             temp[k[0].casualty] = null; //remove enemy checker
 
             //promote if needed
@@ -148,15 +150,15 @@ function stateEval(state, action) {
       tempChecker = null;
       // console.log("CPU attempting to find a move");
       for (let i = 0; i < 64; i++) {
-        tempChecker = state.chckrLocations[i];
+        tempChecker = state.chckrLocations[randomSquarePermutation[i]];
         // console.log(i);
         if (tempChecker === "Black" || tempChecker === "Black King") {
-          k = getMoves(i, state.chckrLocations);
+          k = getMoves(randomSquarePermutation[i], state.chckrLocations);
           // console.log("k: " + k);
           if (k.length > 0) {
             let temp = Object.assign([], state.chckrLocations);
             temp[k[0]] = tempChecker; //move checker to new location
-            temp[i] = null;
+            temp[randomSquarePermutation[i]] = null;
 
             //promote if needed
             if (Math.floor(k[0] / 8) === 7) {
