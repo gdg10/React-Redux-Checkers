@@ -122,6 +122,15 @@ function stateEval(state, action) {
             temp[randomSquarePermutation[i]] = null;
             temp[k[0].casualty] = null; //remove enemy checker
 
+            // check for double jump
+            let doubleJump = [];
+            doubleJump = getJump(tempChecker, k[0].jumpTo, temp, doubleJump);
+            if (doubleJump.length > 0){
+              temp[doubleJump[0].jumpTo] = tempChecker; //move checker to new location
+              temp[k[0].jumpTo] = null;
+              temp[doubleJump[0].casualty] = null; //remove enemy checker
+            }
+
             //promote if needed
             if (Math.floor(k[0].jumpTo / 8) === 7) {
               // console.log("Promotion");
